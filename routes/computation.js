@@ -8,7 +8,11 @@ router.get('/', function (req, res, next) {
     const url = new URL(fake_url)
     const search_params = url.searchParams
     if (req.method === 'GET') {
-        const value = search_params.get("x")
+        value = search_params.get("x")
+        if(value === null)
+        {
+            value=Math.round(Math.random()*900);
+        }
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write('Math.cos() applied to ' + value + ' is ' + Math.cos(value))
         res.write('<br/>Math.asin() applied to ' + value + ' is ' + Math.asin(value))
